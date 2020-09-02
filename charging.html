@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8">
+  <title>Charging</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script> 
+  <script>
+            var a=setInterval(a1,1000);
+            function a1(){
+            navigator.getBattery().then(function(battery){
+                var scr=document.getElementById("percentage");
+                var val;
+                val=battery.level*100;
+                scr.innerHTML=Math.round(val)+"%";
+            });}
+            navigator.getBattery().then(function(battery){
+                if(battery.charging){
+                    alert("your device is already in charging mode");
+                }
+            });
+            $(function(){
+                $("#display").removeClass("display");
+                $("#percentage").removeClass("percentage");
+                $("#bubbles").removeClass("bubbles");
+                $("#current1").removeClass("current1");
+                $("#current2").removeClass("current2");
+                $("#light").removeClass("light");
+           });
+           $(function(){
+                $("#switch").click(function(){
+                    $("#display").toggleClass("display");
+                    $("#percentage").toggleClass("percentage");
+                    $("#switch").toggleClass("switchoff");
+                    $("#bubbles").toggleClass("bubbles");
+                    $("#current1").toggleClass("current1");
+                    $("#current2").toggleClass("current2");
+                    $("#light").toggleClass("light");
+                });
+            });
+        </script> 
+  <style>
+            body{
+                background: #b3ffff;
+                align-self: center;
+
+            }
+            *{
+                box-sizing: border-box;
+                align-self: center;
+            }
+            #main{
+                width:180px;
+                position: relative;
+                height:320px;
+                background:rgb(71,102,216);
+                border-radius: 20px;
+                box-shadow: 0px 0px 25px 1px #000;
+            }
+            #screen{
+                position: absolute;
+                top:15px;
+                left:10px;
+                width:160px;
+                height:290px;
+                background:#222;
+            }
+            .display{
+                position: absolute;
+                color:honeydew;
+                width: 90px;
+                height: 90px;
+                left:40px;
+                top: 100px;
+                border-top:7px solid #0f0;
+                border-radius: 45px;
+                box-shadow: 0 0 50px #0f0;
+                animation:animate 5s linear 0.5s infinite;
+            }
+            .percentage{
+                position: absolute;
+                text-align: center;
+                align-self: center;
+                line-height: 60px;
+                left:10px;
+                top:10px;
+                font-size: 40px;
+                animation: rev 5s linear 0.5s infinite;
+            }
+            .display::before,.display::after{
+                content: '';
+                width:90px;
+                height: 90px;
+                position: absolute;
+                border-radius: 45px;
+                left:0;
+                top:-7px;
+            }
+            .display::before{
+                border-top:7px solid #0f0;
+                transform: rotate(120deg);
+            }
+            .display::after{
+                border-top:7px solid #0f0;
+                transform: rotate(240deg);
+            }
+            @keyframes animate {
+                100%{
+                    transform:rotate(360deg);
+                }
+            }
+            @keyframes rev{
+                100%{
+                    transform:rotate(-360deg);
+                }
+            }
+            #camera1{
+                width:10px;
+                top:2.5px;
+                left:55px;
+                position: absolute;
+                height: 10px;
+                border-radius:5px;
+                background: #aaa;
+            }
+            #camera2{
+                position: absolute;
+                width:4px;
+                height: 4px;
+                top:3px;
+                left:3px;
+                border-radius: 2px;
+                background: #000;
+            }
+            #speaker{
+                position: absolute;
+                left:70px;
+                top:3.5px;
+                width:40px;
+                height:8px;
+                border-radius: 4px;
+                background:#444;
+            }
+            #speaker span{
+                position: absolute;
+                top:2px;
+                left:2px;
+                width: 4px;
+                height: 4px;
+                border-radius: 2px;
+                background: #666;
+            }
+            #speaker span:nth-child(1){
+                margin-left: 4px;
+            }
+            #speaker span:nth-child(2){
+                margin-left: 16px;
+            }
+            #speaker span:nth-child(3){
+                margin-left: 28px;
+            }
+            #flash{
+                position: absolute;
+                width:10px;
+                height: 10px;
+                border-radius: 5px;
+                background:radial-gradient(#bbb,#eee);
+                left:125px;
+                top:2.5px;
+            }
+            #pin{
+                position: relative;
+                width:15px;
+                height: 25px;
+                border-radius: 1px;
+                background:#000;
+                left:80px;
+            }
+            #wire1{
+                position: relative;
+                width:8px;
+                height: 100px;
+                background:#000;
+                left:83px;
+            }
+            #wire2{
+                position: relative;
+                width:120px;
+                height: 8px;
+                background:#000;
+                left:83px;
+            }
+            #adapter{
+                position: absolute;
+                width:50px;
+                height: 60px;
+                left: 200px;
+                top:430px;
+                background: #000;
+            }
+            #board{
+                position: absolute;
+                width:200px;
+                height: 160px;
+                background:#ffa;
+                left: 170px;
+                top:380px;
+                border:1px solid black;
+                z-index: -1;
+                box-shadow: 0px 0px 10px #000;
+            }
+            #line{
+                position: absolute;
+                width:1.2px;
+                height:160px;
+                left: 98px;
+                background:black;
+            }
+            .switchon{
+                position: absolute;
+                width:40px;
+                height: 60px;
+                background:#fff;
+                left:130px;
+                top:50px;
+                box-shadow: 0 -6px 5px #000;
+            }
+            .switchoff{
+                position: absolute;
+                width:40px;
+                height: 60px;
+                background:#fff;
+                left:130px;
+                top:50px;
+                box-shadow: 0px 6px 5px #000;
+            }
+            .bubbles{
+                position: absolute;
+                opacity: 0;
+                bottom: 0;
+                filter: blur(0px);
+                animation: moving 1s ease-in 0.5s 2;
+            }
+            @keyframes moving {
+                from{
+                    opacity: 1;
+                }
+                to{
+                    transform:translateY(-50px);
+                    filter:blur(10px);
+                    opacity: 0;
+                }
+            }
+            .bubbles span:nth-child(1){
+                position: absolute;
+                bottom:0;
+                width: 20px;
+                height: 20px;
+                border-radius: 10px;
+                background: #0f0;
+                left:67.5px;
+            }
+            .bubbles span:nth-child(2){
+                position: absolute;
+                bottom:25px;
+                width: 15px;
+                height: 15px;
+                border-radius: 7.5px;
+                background: #0f0;
+                left:70px;
+            }
+            .bubbles span:nth-child(3){
+                position: absolute;
+                bottom:45px;
+                width: 10px;
+                height:10px;
+                border-radius: 5px;
+                background: #0f0;
+                left:72.5px;
+            }
+            .current1{
+                position: absolute;
+                width:8px;
+                height: 8px;
+                background: #ff0;
+                right: 10px;
+                filter: blur(1px);
+                z-index: 1;
+                opacity: 0;
+                animation: a 0.25s linear;
+            }
+            @keyframes a {
+                to{
+                    right: 110px;
+                    opacity: 1;
+                }
+            }
+            .current2{
+                position: absolute;
+                width:8px;
+                height: 8px;
+                background: #ff0;
+                bottom:0px;
+                filter: blur(1px);
+                z-index: 1;
+                opacity: 0;
+                animation: b 0.25s linear 0.25s;
+            }
+            @keyframes b {
+                to{
+                    bottom: 100px;
+                    opacity: 1;
+                }
+            }
+            .light{
+                position:absolute;
+                left:15px;
+                top:5px;
+                width:5px;
+                height:5px;
+                border-radius:2.5px;
+                background:#0f0;
+                box-shadow:0 0px 20px #0f0;
+                animation:blinking 5s linear infinite;
+            }
+            @keyframes blinking{
+                30%{opacity:0;}
+                40%{opacity:1;}
+                60%{opacity:0;}
+                70%{opacity:1;}
+                100%{opacity:0;}
+            }
+        </style> 
+ </head> 
+ <body> 
+  <div id="main"> 
+   <div id="light" class="light"></div> 
+   <div id="screen"> 
+    <div id="display" class="display"> 
+     <center><span id="percentage" class="percentage"></span></center> 
+    </div> 
+    <div id="bubbles" class="bubbles"> 
+     <span></span> 
+     <span></span> 
+     <span></span> 
+    </div> 
+   </div> 
+   <div id="camera1"> 
+    <div id="camera2"></div> 
+   </div> 
+   <div id="speaker"> 
+    <span></span> 
+    <span></span> 
+    <span></span> 
+   </div> 
+   <div id="flash"></div> 
+  </div> 
+  <div id="pin"></div> 
+  <div id="wire1"> 
+   <div id="current2" class="current2"></div> 
+  </div> 
+  <div id="wire2"> 
+   <div id="current1" class="current1"></div> 
+  </div> 
+  <div> 
+   <div id="board"> 
+    <div id="line"></div> 
+    <div id="switch" class="switchoff switchon"></div> 
+   </div> 
+   <div id="adapter"></div> 
+  </div>  
+ </body>
+</html>
